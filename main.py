@@ -39,6 +39,8 @@ def run() -> None:
         raise ValueError(f"word is {len(word)} chars, gate wants {GATE_MIN}-{GATE_MAX}")
     if word != word.strip() or any(ch.isspace() for ch in word):
         raise ValueError("entry must be exactly one word, no whitespace")
+    if not word.isalpha():
+        raise ValueError("entry must be one word of letters, no digits or punctuation")
     raw = word.encode("utf-8")
     if raw.decode("utf-8") != word:
         raise ValueError("entry is not clean UTF-8 text")
